@@ -9,6 +9,11 @@ liquityWidget은 컴포넌트로 활용할 수 있으며, liquityExample 페이�
 - [liquityWidget](https://near.org/0xgh.near/widget/liquityWidget)
 - [liquityExample](https://near.org/0xgh.near/widget/liquityExample)
 
+## 현재 수행 가능한 기능
+- `openTrove`
+- `withdraw`
+- `closeTrove`
+
 ## 기여자
 `❗ 이 목록은 Github 계정을 몰라서 Discord 닉네임만 적어 놓았습니다. 나중에 변경될 예정입니다.`
 - Blynn
