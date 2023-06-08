@@ -14,6 +14,9 @@ liquityWidget은 컴포넌트로 활용할 수 있으며, liquityExample 페이�
 - `withdraw`
 - `closeTrove`
 
+## 앞으로 추가 할 기능
+- `LUSD → USDT(혹은 USDC)`
+
 ## 기여자
 `❗ 이 목록은 Github 계정을 몰라서 Discord 닉네임만 적어 놓았습니다. 나중에 변경될 예정입니다.`
 - Blynn
