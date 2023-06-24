@@ -1,5 +1,5 @@
 # liquityWidget
-liquityWidget은 BOS를 활용한 Liquity의 분산형 dApp입니다.
+liquityWidget은 BOS를 활용한 Liquity의 dApp입니다.
 
 ## 특징
 liquityWidget은 컴포넌트로 활용할 수 있으며, liquityExample 페이지를 통해 컴포넌트를 사용한 페이지를 확인할 수 있습니다.
