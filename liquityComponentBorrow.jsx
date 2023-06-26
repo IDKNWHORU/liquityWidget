@@ -1,6 +1,6 @@
 /**
  * @description
- * State initialize for UI rendering
+ * Initialize State for UI rendering
  */
 State.init({
   displayColl: "",
@@ -31,9 +31,9 @@ State.init({
  * 
  * @param depositChangeEvent 
  * @description
- * Update coll when user fill ETH to number field.
- * Calculate collateral ratio, when ETH and LUSD number field updated.
- * Collateral ratio formula : ((ETH * cueerent ETH price) / (borowwing LUSD + liquidation reserve + borrowing fee)) * 100
+ * Update 'coll' when user fills ETH to number field.
+ * Recalculate collateral ratio when ETH and LUSD number field is updated.
+ * Collateral ratio : ((ETH * cueerent ETH price) / (borowwing LUSD + liquidation reserve + borrowing fee)) * 100
  * Check requirements for an active "Open Trove" button.
  */
 const setcoll = (depositChangeEvent) => {
@@ -55,7 +55,7 @@ const setcoll = (depositChangeEvent) => {
  * 
  * @param borrowChangeEvent
  * @description
- * Update borrow when user fill LUSD to number field.
+ * Update 'borrow' when user fills LUSD to number field.
  * Calculate borrowing fee and total coll(=== total debt)
  * Borrowing fee formula cases.
  *   1. recovery mode : 0
@@ -88,7 +88,7 @@ const setBorrow = (borrowChangeEvent) => {
  * 
  * @description
  * check list for an active "Open Trove" button.
- *   1. borrow LUSD must over 1800(LUSD).
+ *   1. LUSD being borrowed must be over 1800(LUSD).
  *   2. if the system is in recovery mode, the collateral ratio must exceed 150%.
  *   3. if the system is in normal mode, the collateral ratio must exceed 110%.
  *   4. you can only add coll(ETH) on your ETH balance.
@@ -137,8 +137,8 @@ const validateTrove = () => {
 
 /**
  * @description
- * We use 5 contracts for open trove.
- * Only the functions used are defined in the abi objects.
+ * 5 out of all contracts are being used for open trove.
+ * Only the used functions are defined in the abi objects.
  * The contract address is registered on the Ethereum mainnet.
  * 
  * Contract list.
@@ -268,7 +268,7 @@ const hintHelpersABI = [
 
 /**
  * @description
- * Calculate two hints to reduce the gas cost of inserting into the trove list before calling the transaction.
+ * Calculate two hints to reduce the gas cost; in which the gas spent is to insert the money into the trove list before calling the transaction.
  * The gas cost is O(n) in the worst case, but we want to reduce it for efficient O(1).
  * Call transaction "borrowingOperation.openTrove()" user click Open Trove button.
  * Example Borrower Operations with Hints reference link is "https://github.com/liquity/dev#example-borrower-operations-with-hints".
@@ -356,7 +356,8 @@ const openTrove = async () => {
 
 /**
  * @description
- * This code block is initialize sceanario and checklist assumes you have already connect your wallet.
+ * This code block initializes sceanario
+ * The checklist assumes you have already connected your wallet.
  * Check List
  *   1. The network must be the Ethereum mainnet.
  *   2. Get ETH balance in your wallet.
