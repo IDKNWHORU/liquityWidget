@@ -1,767 +1,10 @@
 const troveManageABI = [
   {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_activePoolAddress",
-        type: "address",
-      },
-    ],
-    name: "ActivePoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_baseRate",
-        type: "uint256",
-      },
-    ],
-    name: "BaseRateUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_newBorrowerOperationsAddress",
-        type: "address",
-      },
-    ],
-    name: "BorrowerOperationsAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_collSurplusPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "CollSurplusPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_defaultPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "DefaultPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_gasPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "GasPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_lqtyStakingAddress",
-        type: "address",
-      },
-    ],
-    name: "LQTYStakingAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_lqtyTokenAddress",
-        type: "address",
-      },
-    ],
-    name: "LQTYTokenAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_L_ETH",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_L_LUSDDebt",
-        type: "uint256",
-      },
-    ],
-    name: "LTermsUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_newLUSDTokenAddress",
-        type: "address",
-      },
-    ],
-    name: "LUSDTokenAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_lastFeeOpTime",
-        type: "uint256",
-      },
-    ],
-    name: "LastFeeOpTimeUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_liquidatedDebt",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_liquidatedColl",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_collGasCompensation",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_LUSDGasCompensation",
-        type: "uint256",
-      },
-    ],
-    name: "Liquidation",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "previousOwner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "OwnershipTransferred",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_newPriceFeedAddress",
-        type: "address",
-      },
-    ],
-    name: "PriceFeedAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_attemptedLUSDAmount",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_actualLUSDAmount",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_ETHSent",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_ETHFee",
-        type: "uint256",
-      },
-    ],
-    name: "Redemption",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_sortedTrovesAddress",
-        type: "address",
-      },
-    ],
-    name: "SortedTrovesAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_stabilityPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "StabilityPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_totalStakesSnapshot",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_totalCollateralSnapshot",
-        type: "uint256",
-      },
-    ],
-    name: "SystemSnapshotsUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_newTotalStakes",
-        type: "uint256",
-      },
-    ],
-    name: "TotalStakesUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_borrower",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_newIndex",
-        type: "uint256",
-      },
-    ],
-    name: "TroveIndexUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_borrower",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_debt",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_coll",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "enum TroveManager.TroveManagerOperation",
-        name: "_operation",
-        type: "uint8",
-      },
-    ],
-    name: "TroveLiquidated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_L_ETH",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_L_LUSDDebt",
-        type: "uint256",
-      },
-    ],
-    name: "TroveSnapshotsUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_borrower",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_debt",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_coll",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_stake",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "enum TroveManager.TroveManagerOperation",
-        name: "_operation",
-        type: "uint8",
-      },
-    ],
-    name: "TroveUpdated",
-    type: "event",
-  },
-  {
-    inputs: [],
-    name: "BETA",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "BOOTSTRAP_PERIOD",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "BORROWING_FEE_FLOOR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "CCR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "DECIMAL_PRECISION",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "LUSD_GAS_COMPENSATION",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "L_ETH",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "L_LUSDDebt",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "MAX_BORROWING_FEE",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "MCR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "MINUTE_DECAY_FACTOR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "MIN_NET_DEBT",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "NAME",
-    outputs: [{ internalType: "string", name: "", type: "string" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "PERCENT_DIVISOR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "REDEMPTION_FEE_FLOOR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "SECONDS_IN_ONE_MINUTE",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    name: "TroveOwners",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "", type: "address" }],
-    name: "Troves",
-    outputs: [
-      { internalType: "uint256", name: "debt", type: "uint256" },
-      { internalType: "uint256", name: "coll", type: "uint256" },
-      { internalType: "uint256", name: "stake", type: "uint256" },
-      {
-        internalType: "enum TroveManager.Status",
-        name: "status",
-        type: "uint8",
-      },
-      { internalType: "uint128", name: "arrayIndex", type: "uint128" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "_100pct",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "activePool",
-    outputs: [
-      { internalType: "contract IActivePool", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "addTroveOwnerToArray",
-    outputs: [{ internalType: "uint256", name: "index", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "applyPendingRewards",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "baseRate",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address[]", name: "_troveArray", type: "address[]" },
-    ],
-    name: "batchLiquidateTroves",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "borrowerOperationsAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_price", type: "uint256" }],
-    name: "checkRecoveryMode",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "closeTrove",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "decayBaseRateFromBorrowing",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_borrower", type: "address" },
-      { internalType: "uint256", name: "_collDecrease", type: "uint256" },
-    ],
-    name: "decreaseTroveColl",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_borrower", type: "address" },
-      { internalType: "uint256", name: "_debtDecrease", type: "uint256" },
-    ],
-    name: "decreaseTroveDebt",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "defaultPool",
-    outputs: [
-      { internalType: "contract IDefaultPool", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_LUSDDebt", type: "uint256" }],
-    name: "getBorrowingFee",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_LUSDDebt", type: "uint256" }],
-    name: "getBorrowingFeeWithDecay",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getBorrowingRate",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getBorrowingRateWithDecay",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       { internalType: "address", name: "_borrower", type: "address" },
       { internalType: "uint256", name: "_price", type: "uint256" },
     ],
     name: "getCurrentICR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "getEntireDebtAndColl",
-    outputs: [
-      { internalType: "uint256", name: "debt", type: "uint256" },
-      { internalType: "uint256", name: "coll", type: "uint256" },
-      {
-        internalType: "uint256",
-        name: "pendingLUSDDebtReward",
-        type: "uint256",
-      },
-      { internalType: "uint256", name: "pendingETHReward", type: "uint256" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getEntireSystemColl",
-    outputs: [
-      { internalType: "uint256", name: "entireSystemColl", type: "uint256" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getEntireSystemDebt",
-    outputs: [
-      { internalType: "uint256", name: "entireSystemDebt", type: "uint256" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "getNominalICR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "getPendingETHReward",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "getPendingLUSDDebtReward",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_ETHDrawn", type: "uint256" }],
-    name: "getRedemptionFeeWithDecay",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getRedemptionRate",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getRedemptionRateWithDecay",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_price", type: "uint256" }],
-    name: "getTCR",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
@@ -781,625 +24,37 @@ const troveManageABI = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_index", type: "uint256" }],
-    name: "getTroveFromTroveOwnersArray",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getTroveOwnersCount",
+    inputs: [{ internalType: "uint256", name: "_price", type: "uint256" }],
+    name: "getTCR",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "getTroveStake",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "getTroveStatus",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "hasPendingRewards",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_borrower", type: "address" },
-      { internalType: "uint256", name: "_collIncrease", type: "uint256" },
-    ],
-    name: "increaseTroveColl",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_borrower", type: "address" },
-      { internalType: "uint256", name: "_debtIncrease", type: "uint256" },
-    ],
-    name: "increaseTroveDebt",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "isOwner",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lastETHError_Redistribution",
+    inputs: [{ internalType: "uint256", name: "_LUSDDebt", type: "uint256" }],
+    name: "getBorrowingFeeWithDecay",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
-    name: "lastFeeOperationTime",
+    name: "getBorrowingRateWithDecay",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lastLUSDDebtError_Redistribution",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "liquidate",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_n", type: "uint256" }],
-    name: "liquidateTroves",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lqtyStaking",
-    outputs: [
-      { internalType: "contract ILQTYStaking", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lqtyToken",
-    outputs: [
-      { internalType: "contract ILQTYToken", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lusdToken",
-    outputs: [
-      { internalType: "contract ILUSDToken", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "owner",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "priceFeed",
-    outputs: [
-      { internalType: "contract IPriceFeed", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "uint256", name: "_LUSDamount", type: "uint256" },
-      {
-        internalType: "address",
-        name: "_firstRedemptionHint",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_upperPartialRedemptionHint",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_lowerPartialRedemptionHint",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_partialRedemptionHintNICR",
-        type: "uint256",
-      },
-      { internalType: "uint256", name: "_maxIterations", type: "uint256" },
-      { internalType: "uint256", name: "_maxFeePercentage", type: "uint256" },
-    ],
-    name: "redeemCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "removeStake",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "", type: "address" }],
-    name: "rewardSnapshots",
-    outputs: [
-      { internalType: "uint256", name: "ETH", type: "uint256" },
-      { internalType: "uint256", name: "LUSDDebt", type: "uint256" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_borrowerOperationsAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_activePoolAddress", type: "address" },
-      { internalType: "address", name: "_defaultPoolAddress", type: "address" },
-      {
-        internalType: "address",
-        name: "_stabilityPoolAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_gasPoolAddress", type: "address" },
-      {
-        internalType: "address",
-        name: "_collSurplusPoolAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_priceFeedAddress", type: "address" },
-      { internalType: "address", name: "_lusdTokenAddress", type: "address" },
-      {
-        internalType: "address",
-        name: "_sortedTrovesAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_lqtyTokenAddress", type: "address" },
-      { internalType: "address", name: "_lqtyStakingAddress", type: "address" },
-    ],
-    name: "setAddresses",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_borrower", type: "address" },
-      { internalType: "uint256", name: "_num", type: "uint256" },
-    ],
-    name: "setTroveStatus",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "sortedTroves",
-    outputs: [
-      { internalType: "contract ISortedTroves", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "stabilityPool",
-    outputs: [
-      { internalType: "contract IStabilityPool", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "totalCollateralSnapshot",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "totalStakes",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "totalStakesSnapshot",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "updateStakeAndTotalStakes",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "_borrower", type: "address" }],
-    name: "updateTroveRewardSnapshots",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
 ];
 const priceFeedABI = [
   {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_lastGoodPrice",
-        type: "uint256",
-      },
-    ],
-    name: "LastGoodPriceUpdated",
-    type: "event",
-  },
-  {
     inputs: [],
-    name: "fetchPrice",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getPrice",
+    name: "lastGoodPrice",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "price", type: "uint256" }],
-    name: "setPrice",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "nonpayable",
     type: "function",
   },
 ];
 const borrowerOperationsABI = [
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_activePoolAddress",
-        type: "address",
-      },
-    ],
-    name: "ActivePoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_collSurplusPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "CollSurplusPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_defaultPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "DefaultPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_gasPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "GasPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_lqtyStakingAddress",
-        type: "address",
-      },
-    ],
-    name: "LQTYStakingAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_borrower",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_LUSDFee",
-        type: "uint256",
-      },
-    ],
-    name: "LUSDBorrowingFeePaid",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_lusdTokenAddress",
-        type: "address",
-      },
-    ],
-    name: "LUSDTokenAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "previousOwner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "OwnershipTransferred",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_newPriceFeedAddress",
-        type: "address",
-      },
-    ],
-    name: "PriceFeedAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_sortedTrovesAddress",
-        type: "address",
-      },
-    ],
-    name: "SortedTrovesAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_stabilityPoolAddress",
-        type: "address",
-      },
-    ],
-    name: "StabilityPoolAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_borrower",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "arrayIndex",
-        type: "uint256",
-      },
-    ],
-    name: "TroveCreated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_newTroveManagerAddress",
-        type: "address",
-      },
-    ],
-    name: "TroveManagerAddressChanged",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_borrower",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_debt",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_coll",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "stake",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "enum BorrowerOperations.BorrowerOperation",
-        name: "operation",
-        type: "uint8",
-      },
-    ],
-    name: "TroveUpdated",
-    type: "event",
-  },
-  {
-    inputs: [],
-    name: "BORROWING_FEE_FLOOR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "CCR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "DECIMAL_PRECISION",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "LUSD_GAS_COMPENSATION",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "MCR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "MIN_NET_DEBT",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "NAME",
-    outputs: [{ internalType: "string", name: "", type: "string" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "PERCENT_DIVISOR",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "_100pct",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "activePool",
-    outputs: [
-      { internalType: "contract IActivePool", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
   {
     inputs: [
       { internalType: "address", name: "_upperHint", type: "address" },
@@ -1408,202 +63,6 @@ const borrowerOperationsABI = [
     name: "addColl",
     outputs: [],
     stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "uint256", name: "_maxFeePercentage", type: "uint256" },
-      { internalType: "uint256", name: "_collWithdrawal", type: "uint256" },
-      { internalType: "uint256", name: "_LUSDChange", type: "uint256" },
-      { internalType: "bool", name: "_isDebtIncrease", type: "bool" },
-      { internalType: "address", name: "_upperHint", type: "address" },
-      { internalType: "address", name: "_lowerHint", type: "address" },
-    ],
-    name: "adjustTrove",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "claimCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "closeTrove",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "defaultPool",
-    outputs: [
-      { internalType: "contract IDefaultPool", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_debt", type: "uint256" }],
-    name: "getCompositeDebt",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "pure",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getEntireSystemColl",
-    outputs: [
-      { internalType: "uint256", name: "entireSystemColl", type: "uint256" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getEntireSystemDebt",
-    outputs: [
-      { internalType: "uint256", name: "entireSystemDebt", type: "uint256" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "isOwner",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lqtyStaking",
-    outputs: [
-      { internalType: "contract ILQTYStaking", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lqtyStakingAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lusdToken",
-    outputs: [
-      { internalType: "contract ILUSDToken", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "_borrower", type: "address" },
-      { internalType: "address", name: "_upperHint", type: "address" },
-      { internalType: "address", name: "_lowerHint", type: "address" },
-    ],
-    name: "moveETHGainToTrove",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "uint256", name: "_maxFeePercentage", type: "uint256" },
-      { internalType: "uint256", name: "_LUSDAmount", type: "uint256" },
-      { internalType: "address", name: "_upperHint", type: "address" },
-      { internalType: "address", name: "_lowerHint", type: "address" },
-    ],
-    name: "openTrove",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "owner",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "priceFeed",
-    outputs: [
-      { internalType: "contract IPriceFeed", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "uint256", name: "_LUSDAmount", type: "uint256" },
-      { internalType: "address", name: "_upperHint", type: "address" },
-      { internalType: "address", name: "_lowerHint", type: "address" },
-    ],
-    name: "repayLUSD",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_troveManagerAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_activePoolAddress", type: "address" },
-      { internalType: "address", name: "_defaultPoolAddress", type: "address" },
-      {
-        internalType: "address",
-        name: "_stabilityPoolAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_gasPoolAddress", type: "address" },
-      {
-        internalType: "address",
-        name: "_collSurplusPoolAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_priceFeedAddress", type: "address" },
-      {
-        internalType: "address",
-        name: "_sortedTrovesAddress",
-        type: "address",
-      },
-      { internalType: "address", name: "_lusdTokenAddress", type: "address" },
-      { internalType: "address", name: "_lqtyStakingAddress", type: "address" },
-    ],
-    name: "setAddresses",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "sortedTroves",
-    outputs: [
-      { internalType: "contract ISortedTroves", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "troveManager",
-    outputs: [
-      { internalType: "contract ITroveManager", name: "", type: "address" },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {
@@ -1619,6 +78,17 @@ const borrowerOperationsABI = [
   },
   {
     inputs: [
+      { internalType: "uint256", name: "_LUSDAmount", type: "uint256" },
+      { internalType: "address", name: "_upperHint", type: "address" },
+      { internalType: "address", name: "_lowerHint", type: "address" },
+    ],
+    name: "repayLUSD",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
       { internalType: "uint256", name: "_maxFeePercentage", type: "uint256" },
       { internalType: "uint256", name: "_LUSDAmount", type: "uint256" },
       { internalType: "address", name: "_upperHint", type: "address" },
@@ -1627,6 +97,46 @@ const borrowerOperationsABI = [
     name: "withdrawLUSD",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+];
+const sortedTrovesABI = [
+  {
+    inputs: [],
+    name: "getSize",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_NICR", type: "uint256" },
+      { internalType: "address", name: "_prevId", type: "address" },
+      { internalType: "address", name: "_nextId", type: "address" },
+    ],
+    name: "findInsertPosition",
+    outputs: [
+      { internalType: "address", name: "", type: "address" },
+      { internalType: "address", name: "", type: "address" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+];
+const hintHelpersABI = [
+  {
+    inputs: [
+      { internalType: "uint256", name: "_CR", type: "uint256" },
+      { internalType: "uint256", name: "_numTrials", type: "uint256" },
+      { internalType: "uint256", name: "_inputRandomSeed", type: "uint256" },
+    ],
+    name: "getApproxHint",
+    outputs: [
+      { internalType: "address", name: "hintAddress", type: "address" },
+      { internalType: "uint256", name: "diff", type: "uint256" },
+      { internalType: "uint256", name: "latestRandomSeed", type: "uint256" },
+    ],
+    stateMutability: "view",
     type: "function",
   },
 ];
@@ -1769,21 +279,11 @@ State.init({
   value: "",
   complete: false,
 });
-const troveManageAddress = "0x0ECDF34731eE8Dd46caa99a1AAE173beD1B32c67";
-const priceFeedAddress = "0x07dD4Ce17De84bA13Fc154A7FdB46fC362a41E2C";
-const borrowerOperationsAddress = "0xD69fC8928D4F3229341cb431263F1EBd87B1ade8";
-
-// const troveManageABI = fetch(
-//   "https://api-sepolia.etherscan.io/api?module=contract&action=getabi&address=0x8a4Dc4AA9fB4542Be5158C5D35E1bcC83FEE2136"
-// );
-// const priceFeedABI = fetch(
-//   "https://api-sepolia.etherscan.io/api?module=contract&action=getabi&address=0x330804fA8DA14ec5Fe3de325ED41Aa41525b04a3"
-// );
-
-// const troveManageInterface = new ethers.utils.Interface(
-//   troveManageABI.body.result
-// );
-// const priceFeedInterface = new ethers.utils.Interface(priceFeedABI.body.result);
+const troveManageAddress = "0xA39739EF8b0231DbFA0DcdA07d7e29faAbCf4bb2";
+const priceFeedAddress = "0x4c517D4e2C851CA76d7eC94B805269Df0f2201De";
+const borrowerOperationsAddress = "0x24179CD81c9e782A4096035f7eC97fB8B783e007";
+const sortedTrovesAddress = "0x8FdD3fbFEb32b28fb73555518f8b361bCeA741A6";
+const hintHelpersAddress = "0xE84251b93D9524E0d2e621Ba7dc7cb3579F997C0";
 
 const troveManageInterface = new ethers.utils.Interface(troveManageABI);
 const priceFeedInterface = new ethers.utils.Interface(priceFeedABI);
@@ -1798,8 +298,11 @@ const infoHandler = () => {
       }
     });
 
-  // Price 조회
-  const encodedForPrice = priceFeedInterface.encodeFunctionData("getPrice");
+  // get ethereum price
+  const encodedForPrice = priceFeedInterface.encodeFunctionData(
+    "lastGoodPrice",
+    []
+  );
   Ethers.provider()
     .call({
       to: priceFeedAddress,
@@ -1807,7 +310,7 @@ const infoHandler = () => {
     })
     .then((raw) => {
       const receiverBalanceHex = priceFeedInterface.decodeFunctionResult(
-        "getPrice",
+        "lastGoodPrice",
         raw
       );
       const result = receiverBalanceHex[0].div("1000000000000000000");
@@ -1816,8 +319,7 @@ const infoHandler = () => {
         currentPriceRaw: receiverBalanceHex[0].toString(),
       });
     });
-
-  // ICR 조회
+  // get ICR
   const encodedForICR = troveManageInterface.encodeFunctionData(
     "getCurrentICR",
     [state.address, state.currentPriceRaw || "2000000000000000000000"]
@@ -1832,11 +334,13 @@ const infoHandler = () => {
         "getCurrentICR",
         raw
       );
-      const result = receiverBalanceHex[0].div("1000000000000000000");
-      State.update({ currentICR: result.toString() });
+      const result = receiverBalanceHex[0].div("10000000000000000");
+      State.update({
+        currentICR: (Number(result.toString()) / 100).toString(),
+      });
     });
 
-  // Collateral 조회
+  // get collateral
   const encodedForColl = troveManageInterface.encodeFunctionData(
     "getTroveColl",
     [state.address]
@@ -1858,7 +362,7 @@ const infoHandler = () => {
       });
     });
 
-  // debt 조회
+  // get debt
   const encodedForDebt = troveManageInterface.encodeFunctionData(
     "getTroveDebt",
     [state.address]
@@ -1876,26 +380,37 @@ const infoHandler = () => {
       const result = receiverBalanceHex[0].div("1000000000000000000");
       State.update({ currentDebt: result.toString() });
     });
+
+  //   get TCR
+  const encodedForTCR = troveManageInterface.encodeFunctionData("getTCR", [
+    state.currentPriceRaw || "2000000000000000000",
+  ]);
+  Ethers.provider()
+    .call({
+      to: troveManageAddress,
+      data: encodedForTCR,
+    })
+    .then((raw) => {
+      const receiverBalanceHex = troveManageInterface.decodeFunctionResult(
+        "getTCR",
+        raw
+      );
+      const result = receiverBalanceHex[0].div("10000000000000000");
+      State.update({ tcr: result.toString() });
+    });
 };
-
-if (Ethers.provider()) {
-  const signer = Ethers.provider().getSigner();
-  signer.getAddress().then((address) => {
-    State.update({ address });
-  });
-
-  state.address && infoHandler();
-}
-
 const checkFunc = () => {
-  // Ratio 1.1 이상일 것
-  // Debt 가 2000 이상일 것
+  const tcr = Number(state.tcr);
   if (state.token === "ETH") {
     if (!state.value) {
       State.update({ check: false });
       return;
     }
-    if (state.updatedICR < 1.1) {
+    if (
+      (tcr >= 150 && state.updatedICR < 1.1) ||
+      (tcr < 150 && state.updatedICR < 1.5) ||
+      (tcr < 150 && state.currentICR > state.updatedICR)
+    ) {
       State.update({ check: false });
       return;
     }
@@ -1904,7 +419,11 @@ const checkFunc = () => {
       State.update({ check: false });
       return;
     }
-    if (state.updatedICR < 1.1) {
+    if (
+      (tcr >= 150 && state.updatedICR < 1.1) ||
+      (tcr < 150 && state.updatedICR < 1.5) ||
+      (tcr < 150 && state.currentICR > state.updatedICR)
+    ) {
       State.update({ check: false });
       return;
     }
@@ -1916,13 +435,17 @@ const checkFunc = () => {
   State.update({ check: true });
 };
 
-console.log({ state });
-
 const changeHandler = (e) => {
   const value = e.target.value;
   State.update({ value: e.target.value === 0 ? "" : e.target.value });
+
   // deposit-ETH
-  if (state.option === "deposit" && state.token === "ETH") {
+  if (
+    state.option === "deposit" &&
+    state.token === "ETH" &&
+    state.currentDebt &&
+    state.currentDebt !== "0"
+  ) {
     State.update({
       updatedColl: Number(state.currentColl) + Number(value),
       updatedICR:
@@ -1938,7 +461,12 @@ const changeHandler = (e) => {
     });
   }
   // withdraw-ETH
-  else if (state.option === "withdraw" && state.token === "ETH") {
+  else if (
+    state.option === "withdraw" &&
+    state.token === "ETH" &&
+    state.currentDebt &&
+    state.currentDebt !== "0"
+  ) {
     State.update({
       updatedColl: Number(state.currentColl) - Number(value),
       updatedICR:
@@ -1954,7 +482,12 @@ const changeHandler = (e) => {
     });
   }
   // deposit-LUSD
-  else if (state.option === "deposit" && state.token === "LUSD") {
+  else if (
+    state.option === "deposit" &&
+    state.token === "LUSD" &&
+    state.currentDebt &&
+    state.currentDebt !== "0"
+  ) {
     State.update({
       updatedDebt: Number(state.currentDebt) - Number(value),
       updatedICR:
@@ -1970,22 +503,71 @@ const changeHandler = (e) => {
     });
   }
   // withdraw-LUSD
-  else if (state.option === "withdraw" && state.token === "LUSD") {
-    State.update({
-      updatedDebt: Number(state.currentDebt) + Number(value),
-      updatedICR:
-        e.target.value === ""
-          ? null
-          : Math.round(
-              ((Number(state.currentColl) /
-                (Number(state.currentDebt) + Number(value))) *
-                Number(state.currentPrice) +
-                EPSILON) *
-                1000
-            ) / 1000,
-    });
+  else if (
+    state.option === "withdraw" &&
+    state.token === "LUSD" &&
+    state.currentDebt &&
+    state.currentDebt !== "0"
+  ) {
+    const updateTemp = ethers.utils
+      .parseUnits(Number(value).toString(), "ether")
+      .toString();
+    const encodedForFeeRate = troveManageInterface.encodeFunctionData(
+      "getBorrowingRateWithDecay",
+      []
+    );
+    Ethers.provider()
+      .call({
+        to: troveManageAddress,
+        data: encodedForFeeRate,
+      })
+      .then((raw) => {
+        const receiverBalanceHex = troveManageInterface.decodeFunctionResult(
+          "getBorrowingRateWithDecay",
+          raw
+        );
+        const result = receiverBalanceHex[0];
+        State.update({ withdrawFeeRate: result.toString() });
+      });
+
+    const encodedForFee = troveManageInterface.encodeFunctionData(
+      "getBorrowingFeeWithDecay",
+      [updateTemp]
+    );
+    Ethers.provider()
+      .call({
+        to: troveManageAddress,
+        data: encodedForFee,
+      })
+      .then((raw) => {
+        const receiverBalanceHex = troveManageInterface.decodeFunctionResult(
+          "getBorrowingFeeWithDecay",
+          raw
+        );
+        const estimatedFee =
+          Number(receiverBalanceHex[0].div("10000000000000000")) / 100;
+        console.log(updateTemp);
+        State.update({
+          withdrawFee: estimatedFee.toString(),
+          updatedDebt:
+            Number(state.currentDebt) +
+            Number(ethers.utils.formatEther(updateTemp)) +
+            estimatedFee,
+          updatedICR:
+            e.target.value === ""
+              ? null
+              : Math.round(
+                  ((Number(state.currentColl) /
+                    (Number(state.currentDebt) +
+                      Number(value) +
+                      estimatedFee)) *
+                    Number(state.currentPrice) +
+                    EPSILON) *
+                    1000
+                ) / 1000,
+        });
+      });
   }
-  console.log("execute");
   checkFunc();
 };
 
@@ -2015,70 +597,153 @@ const confirmHandler = () => {
   const amount = ethers.utils
     .parseUnits(state.value.toString(), "ether")
     .toString();
+  const sortedTrovesContract = new ethers.Contract(
+    sortedTrovesAddress,
+    sortedTrovesABI,
+    Ethers.provider().getSigner()
+  );
+  const hintHelpersContract = new ethers.Contract(
+    hintHelpersAddress,
+    hintHelpersABI,
+    Ethers.provider().getSigner()
+  );
+
+  const _1e20 = ethers.BigNumber.from(ethers.utils.parseEther("100"));
+
+  const coll = ethers.BigNumber.from(
+    ethers.utils.parseEther(state.currentColl)
+  );
+  const debt = ethers.BigNumber.from(
+    ethers.utils.parseEther(state.currentDebt)
+  );
+  const NICR = coll.mul(_1e20).div(debt);
+
+  let newNICR;
 
   if (state.option === "deposit" && state.token === "ETH") {
-    borrowerOperationsContract
-      .addColl(state.address, state.address, { value: amount })
-      .then((transactionHash) => {
-        State.update({
-          loading: true,
-          hash: transactionHash.hash,
-          value: "",
-          updatedColl: null,
-          updatedDebt: null,
-          updatedICR: null,
-        });
-        console.log(transactionHash.hash);
-      });
-  } else if (state.option === "withdraw" && state.token === "ETH") {
-    borrowerOperationsContract
-      .withdrawColl(amount.toString(), state.address, state.address)
-      .then((transactionHash) => {
-        State.update({
-          loading: true,
-          hash: transactionHash.hash,
-          value: "",
-          updatedColl: null,
-          updatedDebt: null,
-          updatedICR: null,
-        });
-        console.log(transactionHash.hash);
-      });
+    const addedColl = ethers.BigNumber.from(
+      ethers.utils.parseUnits(state.value.toString(), "ether")
+    );
+    newNICR = coll.add(addedColl).mul(_1e20).div(debt);
   } else if (state.option === "deposit" && state.token === "LUSD") {
-    borrowerOperationsContract
-      .repayLUSD(amount.toString(), state.address, state.address)
-      .then((transactionHash) => {
-        State.update({
-          loading: true,
-          hash: transactionHash.hash,
-          value: "",
-          updatedColl: null,
-          updatedDebt: null,
-          updatedICR: null,
-        });
-        console.log(transactionHash.hash);
-      });
+    const repayLUSD = ethers.BigNumber.from(
+      ethers.utils.parseUnits(state.value.toString(), "ether")
+    );
+
+    const newDebt = debt.sub(repayLUSD);
+
+    newNICR = coll.mul(_1e20).div(newDebt);
+  } else if (state.option === "withdraw" && state.token === "ETH") {
+    const subColl = ethers.BigNumber.from(
+      ethers.utils.parseUnits(state.value.toString(), "ether")
+    );
+
+    newNICR = coll.sub(subColl).mul(_1e20).div(debt);
   } else if (state.option === "withdraw" && state.token === "LUSD") {
-    borrowerOperationsContract
-      .withdrawLUSD(
-        "5000000000000000",
-        amount.toString(),
-        state.address,
-        state.address
-      )
-      .then((transactionHash) => {
-        State.update({
-          loading: true,
-          hash: transactionHash.hash,
-          value: "",
-          updatedColl: null,
-          updatedDebt: null,
-          updatedICR: null,
-        });
-        console.log(transactionHash.hash);
-      });
+    const addedLUSD = ethers.BigNumber.from(
+      ethers.utils.parseUnits(state.value.toString(), "ether")
+    );
+
+    const newDebt = debt.add(addedLUSD);
+
+    newNICR = coll.mul(_1e20).div(newDebt);
   }
+
+  sortedTrovesContract.getSize().then((numTroves) => {
+    const numTrials = numTroves.mul(ethers.BigNumber.from("15"));
+
+    hintHelpersContract
+      .getApproxHint(newNICR.toString(), numTrials.toString(), 42)
+      .then((approxHintRes) => {
+        const approxHint = approxHintRes[0];
+
+        sortedTrovesContract
+          .findInsertPosition(newNICR.toString(), approxHint, approxHint)
+          .then((hintRes) => {
+            const upperHint = hintRes[0];
+            const lowerHint = hintRes[1];
+
+            if (state.option === "deposit" && state.token === "ETH") {
+              borrowerOperationsContract
+                .addColl(upperHint, lowerHint, { value: amount })
+                .then((transactionHash) => {
+                  State.update({
+                    loading: true,
+                    hash: transactionHash.hash,
+                    value: "",
+                    updatedColl: null,
+                    updatedDebt: null,
+                    updatedICR: null,
+                  });
+                  console.log(transactionHash.hash);
+                });
+            } else if (state.option === "withdraw" && state.token === "ETH") {
+              borrowerOperationsContract
+                .withdrawColl(amount.toString(), upperHint, lowerHint)
+                .then((transactionHash) => {
+                  State.update({
+                    loading: true,
+                    hash: transactionHash.hash,
+                    value: "",
+                    updatedColl: null,
+                    updatedDebt: null,
+                    updatedICR: null,
+                  });
+                  console.log(transactionHash.hash);
+                });
+            } else if (state.option === "deposit" && state.token === "LUSD") {
+              borrowerOperationsContract
+                .repayLUSD(amount.toString(), upperHint, lowerHint)
+                .then((transactionHash) => {
+                  State.update({
+                    loading: true,
+                    hash: transactionHash.hash,
+                    value: "",
+                    updatedColl: null,
+                    updatedDebt: null,
+                    updatedICR: null,
+                  });
+                  console.log(transactionHash.hash);
+                });
+            } else if (state.option === "withdraw" && state.token === "LUSD") {
+              borrowerOperationsContract
+                .withdrawLUSD(
+                  state.withdrawFeeRate,
+                  amount.toString(),
+                  upperHint,
+                  lowerHint
+                )
+                .then((transactionHash) => {
+                  State.update({
+                    loading: true,
+                    hash: transactionHash.hash,
+                    value: "",
+                    updatedColl: null,
+                    updatedDebt: null,
+                    updatedICR: null,
+                  });
+                  console.log(transactionHash.hash);
+                });
+            }
+          });
+      });
+  });
 };
+
+const cutDecimal = (data) => {
+  if (isNaN(Number(data))) {
+    return data;
+  }
+  return Math.round((Number(data) + EPSILON) * 1000) / 1000;
+};
+
+if (Ethers.provider()) {
+  const signer = Ethers.provider().getSigner();
+  signer.getAddress().then((address) => {
+    State.update({ address });
+  });
+  state.address && infoHandler();
+}
 
 Ethers.provider() &&
   Ethers.provider()
@@ -2088,16 +753,8 @@ Ethers.provider() &&
       infoHandler();
     })
     .catch((err) => {
-      console.log(err);
       State.update({ loading: false });
     });
-
-const cutDecimal = (data) => {
-  if (isNaN(Number(data))) {
-    return data;
-  }
-  return Math.round((Number(data) + EPSILON) * 1000) / 1000;
-};
 
 return (
   <ManageWrapper>
@@ -2181,7 +838,12 @@ return (
               ) &&
             state.updatedICR && (
               <span
-                className={`after ${state.updatedICR >= 1.1 ? "ok" : "not-ok"}`}
+                className={`after ${
+                  (Number(state.tcr) >= 150 && state.updatedICR >= 1.1) ||
+                  (Number(state.tcr) < 150 && state.updatedICR > 1.5)
+                    ? "ok"
+                    : "not-ok"
+                }`}
               >{`=> ${
                 state.updatedICR >= 0 ? cutDecimal(state.updatedICR) : 0
               }`}</span>
@@ -2209,7 +871,7 @@ return (
           <span className="current-info">{state.currentDebt}</span>
           {state.updatedDebt &&
             state.updatedDebt.toString() !== state.currentDebt.toString() &&
-            state.updatedDebt > 0 && (
+            Number(state.updatedDebt) > 0 && (
               <span
                 className={`after ${
                   state.updatedDebt >= 2000 ? "ok" : "not-ok"
@@ -2227,11 +889,14 @@ return (
         </div>
       </div>
     </div>
-    <div className="confirm-wrapper" onClick={confirmHandler}>
+    <div className="confirm-wrapper">
       {state.address ? (
-        <button className={`confirm ${state.check ? "ok" : "not-ok"}`}>
-          {state.chainId !== 11155111
-            ? "Change network to Sepolia"
+        <button
+          onClick={confirmHandler}
+          className={`confirm ${state.check ? "ok" : "not-ok"}`}
+        >
+          {state.chainId !== 1
+            ? "Change network to Ethereum"
             : state.loading
             ? "Loadig..."
             : state.complete
