@@ -588,6 +588,13 @@ const BorrowWrapper = styled.div`
 /**
  * @description
  * This code block is HTML tags for building the UI structure.
+ * 
+ * The UI is activated when the conditions below are satisfied.
+ * 1. Connect your wallet.
+ * 2. Network is Ethereum mainnet.
+ * 3. Passes the "validateTreve" function result.
+ * 4. There should be no active trove.
+ * 5. Enter a value greater than 0 in the "coll" and "borrow" Number fields.
  */
 return (
   <BorrowWrapper>
