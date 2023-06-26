@@ -10,6 +10,7 @@ State.init({
   complete: false,
   loading: false,
   msg: "",
+  borrowRateRaw: 0,
   borrowRate: 0,
   address: undefined,
   chainId: undefined,
@@ -255,24 +256,23 @@ const openTrove = async () => {
   );
 
   const NICR = ETHColl.mul(_1e20).div(expectedDebt);
-
   sortedTroveContract.getSize().then((numTroves) => {
     const _numTrials = numTroves.mul(ethers.BigNumber.from("15"));
 
     hintHelpersContract
-      .getApproxHint(NICR, _numTrials, 42)
+      .getApproxHint(NICR.toString(), _numTrials.toString(), 42)
       .then((approxHintRes) => {
         const approxHint = approxHintRes[0];
 
         sortedTroveContract
-          .findInsertPosition(NICR, approxHint, approxHint)
+          .findInsertPosition(NICR.toString(), approxHint, approxHint)
           .then((hintRes) => {
             const upperHint = hintRes[0];
             const lowerHint = hintRes[1];
 
             borrowerOperationContract
               .openTrove(
-                ethers.BigNumber.from(ethers.utils.parseEther("0.005")),
+                state.borrowRateRaw,
                 LUSDAmount,
                 upperHint,
                 lowerHint,
@@ -349,6 +349,7 @@ if (Ethers.provider()) {
           .then((borrowingRateRes) => {
             State.update({
               isBorrowingRate: true,
+              borrowRateRaw: borrowingRateRes,
               borrowRate:
                 Number(
                   ethers.utils.formatEther(borrowingRateRes).substring(0, 6)
