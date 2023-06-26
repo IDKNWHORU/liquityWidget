@@ -1,3 +1,7 @@
+/**
+ * @description
+ * State initialize for UI rendering
+ */
 State.init({
   displayColl: "",
   displayBorrow: "",
@@ -23,6 +27,15 @@ State.init({
   isBorrowingRate: false,
 });
 
+/**
+ * 
+ * @param depositChangeEvent 
+ * @description
+ * Update coll when user fill ETH to number field.
+ * Calculate collateral ratio, when ETH and LUSD number field updated.
+ * Collateral ratio formula : ((ETH * cueerent ETH price) / (borowwing LUSD + liquidation reserve + borrowing fee)) * 100
+ * Check requirements for an active "Open Trove" button.
+ */
 const setcoll = (depositChangeEvent) => {
   const value = depositChangeEvent.target.value.replace(/[^.0-9]/g, "");
   const coll = Number(value);
@@ -38,6 +51,19 @@ const setcoll = (depositChangeEvent) => {
   validateTrove();
 };
 
+/**
+ * 
+ * @param borrowChangeEvent
+ * @description
+ * Update borrow when user fill LUSD to number field.
+ * Calculate borrowing fee and total coll(=== total debt)
+ * Borrowing fee formula cases.
+ *   1. recovery mode : 0
+ *   2. normal mode: (borrow * borrow rate) / 100
+ * 
+ * Collateral ratio formula : ((ETH * cueerent ETH price) / (borowwing LUSD + liquidation reserve + borrowing fee)) * 100
+ * Check requirements for an active "Open Trove" button.
+ */
 const setBorrow = (borrowChangeEvent) => {
   const { coll, liquidationReserve, borrowRate, isRecoveryMode } = state;
   const value = borrowChangeEvent.target.value.replace(/[^.0-9]/g, "");
@@ -58,6 +84,15 @@ const setBorrow = (borrowChangeEvent) => {
   validateTrove();
 };
 
+/**
+ * 
+ * @description
+ * check list for an active "Open Trove" button.
+ *   1. borrow LUSD must over 1800(LUSD).
+ *   2. if the system is in recovery mode, the collateral ratio must exceed 150%.
+ *   3. if the system is in normal mode, the collateral ratio must exceed 110%.
+ *   4. you can only add coll(ETH) on your ETH balance.
+ */
 const validateTrove = () => {
   const { coll, borrow, totalcoll, balance, isRecoveryMode } = state;
 
@@ -100,6 +135,19 @@ const validateTrove = () => {
   State.update({ msg: "", isBlocked: false });
 };
 
+/**
+ * @description
+ * We use 5 contracts for open trove.
+ * Only the functions used are defined in the abi objects.
+ * The contract address is registered on the Ethereum mainnet.
+ * 
+ * Contract list.
+ *   1. borrowerOperation
+ *   2. troveManager
+ *   3. priceFeed
+ *   4. sortedTroves
+ *   5. hintHelpers
+ */
 const borrowerOperationAddress = "0x24179CD81c9e782A4096035f7eC97fB8B783e007";
 const borrowerOperationABI = [
   {
@@ -218,6 +266,13 @@ const hintHelpersABI = [
   },
 ];
 
+/**
+ * @description
+ * Calculate two hints to reduce the gas cost of inserting into the trove list before calling the transaction.
+ * The gas cost is O(n) in the worst case, but we want to reduce it for efficient O(1).
+ * Call transaction "borrowingOperation.openTrove()" user click Open Trove button.
+ * Example Borrower Operations with Hints reference link is "https://github.com/liquity/dev#example-borrower-operations-with-hints".
+ */
 const openTrove = async () => {
   if (state.complete) {
     State.update({ complete: false, hash: null });
@@ -299,6 +354,19 @@ const openTrove = async () => {
   });
 };
 
+/**
+ * @description
+ * This code block is initialize sceanario and checklist assumes you have already connect your wallet.
+ * Check List
+ *   1. The network must be the Ethereum mainnet.
+ *   2. Get ETH balance in your wallet.
+ *   3. Check your trove is already open.
+ *   4. Get liquity system LUSD_GAS_COMPENSATION.
+ *   5. Get liquity system borrowing rate.
+ *   6. Get ETH:USD price.
+ *   7. Get liquity system called TCR(total collateral ratio).
+ *   8. Get liquity system is recovery mode.
+ */
 if (Ethers.provider()) {
   const signer = Ethers.provider().getSigner();
   signer.getAddress().then((address) => {
@@ -404,6 +472,10 @@ const complete = () => {
   State.update({ complete: true });
 };
 
+/**
+ * @description
+ * Present the current status of the UI where the transaction is in progress.
+ */
 Ethers.provider() &&
   Ethers.provider()
     .waitForTransaction(state.hash)
@@ -417,6 +489,11 @@ Ethers.provider() &&
       State.update({ loading: false });
     });
 
+/**
+ * @description
+ * This UI style uses the the "Styled Component" library.
+ * Update this code block to change the style.
+ */
 const BorrowWrapper = styled.div`
   width: 100%;
   .input-section{
@@ -508,6 +585,10 @@ const BorrowWrapper = styled.div`
   }
 `;
 
+/**
+ * @description
+ * This code block is HTML tags for building the UI structure.
+ */
 return (
   <BorrowWrapper>
     <div className="input-section deposit">
