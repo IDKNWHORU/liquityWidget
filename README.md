@@ -30,3 +30,4 @@ liquityWidget은 컴포넌트로 활용할 수 있으며, liquityExample 페이�
 ## 참고 문서
 - [NEAR BOS](https://docs.near.org/bos)
 - [Liquity](https://docs.liquity.org/)
+- [자체 자료](https://narrow-lamb-5f4.notion.site/Liquity-Widget-6596143d108a43b383f3f0003ca8c19d?pvs=4)
