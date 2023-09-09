@@ -8,3 +8,5 @@
 ### 프로덕트(메인넷)
 
 [liquityWidget](https://near.org/garlicfaucet.near/widget/liquityWidget)
+
+> docs 폴더에 존재하는 모든 문서는 Blynn이 작업한 문서입니다. 감사를 표합니다.
