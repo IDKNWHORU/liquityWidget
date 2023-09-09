@@ -23,20 +23,11 @@ near([nearblocks.io](http://nearblocks.io/))
 
 # Developer Retrospective
 
-1) Debugging 어렵
-
-개발자 의도대로 코드가 왜 실행이 안되는지 찾는 과정에서
-
-console.log 일일이 확인해야함
-
-2) Not support external Library
-
-기능별로 라이브러리가 여러개 있어서 선별해서 쓸수있었음
-
-외부 라이브러리를 임포트기능이 없어서 편리하게 쓰던걸 못써서 불편했다.
-
-ex 지갑을 연결하거나 TX 보내는 상황
-
-3) 스마트 컨트랙트 조회나 TX 보내는 중간 과정 (like encoding) 의
-
-불편한 작업들을 처리해줬는데  BOS 는 그렇지 않았다.
+1. Debugging 어렵
+  - 개발자 의도대로 코드가 왜 실행이 안되는지 찾는 과정에서 console.log 일일이 확인해야함
+2. Not support external Library
+  - 기능별로 라이브러리가 여러개 있어서 선별해서 쓸수있었음
+  - 외부 라이브러리를 임포트기능이 없어서 편리하게 쓰던걸 못써서 불편했다.
+  > ex 지갑을 연결하거나 TX 보내는 상황
+3. 스마트 컨트랙트 조회나 TX 보내는 중간 과정 (like encoding) 의
+  - 불편한 작업들을 처리해줬는데  BOS 는 그렇지 않았다.
